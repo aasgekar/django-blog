@@ -7,5 +7,5 @@ from blogging.views import LatestEntriesFeed
 urlpatterns = [
     path("", list_view, name="blog_index"),
     path("posts/<int:post_id>/", detail_view, name="blog_detail"),
-    path("/feed", LatestEntriesFeed()),
+    path("feed", LatestEntriesFeed()),
 ]

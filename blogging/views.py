@@ -41,7 +41,6 @@ class LatestEntriesFeed(Feed):
 
     def items(self):
         return Post.objects.order_by("-pub_date")[:5]
-    Post.
 
     def item_title(self, item):
         return item.title

@@ -37,7 +37,7 @@ def detail_view(request, post_id):
 
 class LatestEntriesFeed(Feed):
     title = "My Blog Posts"
-    link = "/feed"
+    link = ""
 
     def items(self):
         return Post.objects.order_by("-pub_date")[:5]

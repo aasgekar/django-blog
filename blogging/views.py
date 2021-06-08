@@ -40,7 +40,7 @@ class LatestEntriesFeed(Feed):
     link = "/feed"
 
     def items(self):
-        return Post.objects.order_by('-pub_date')[:5]
+        return Post.objects.order_by("-pub_date")[:5]
 
     def item_title(self, item):
         return item.title

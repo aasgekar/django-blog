@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template import loader
 from blogging.models import Post
+from django.contrib.syndication.views import Feed
 
 
 def stub_view(request, *args, **kwargs):
@@ -32,3 +33,17 @@ def detail_view(request, post_id):
         raise Http404
     context = {"post": post}
     return render(request, "blogging/detail.html", context)
+
+
+class LatestEntriesFeed(Feed):
+    title = "My Blog Posts"
+    link = "/feed"
+
+    def items(self):
+        return Post.objects.order_by('-pub_date')[:5]
+
+    def item_title(self, item):
+        return item.title
+
+    def item_description(self, item):
+        return item.description
